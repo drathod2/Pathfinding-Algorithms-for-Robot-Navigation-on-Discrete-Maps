@@ -52,7 +52,7 @@ Below are the results for each algorithm:
 
 ### Terminal Output:
 
-![Terminal Output](results/cmd.PNG)
+![Terminal Output](results/terminal.PNG)
 
 
 
