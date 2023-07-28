@@ -30,6 +30,32 @@ The output will show the number of steps it took to find the path, the final pat
 
 Feel free to experiment with different maps and compare the performance of the different algorithms in terms of path length and computation time.
 
+## Results
+
+Below are the results for each algorithm:
+
+### Breadth-First Search (BFS)
+
+![BFS Plot](results/BFS.png)
+
+### Depth-First Search (DFS)
+
+![DFS Plot](results/DFS.png)
+
+### Dijkstra's Algorithm
+
+![Dijkstra Plot](results/Dijkstra.png)
+
+### A* Algorithm
+
+![A* Plot](results/A_star.png)
+
+Terminal Output:
+![Terminal Output](results/cmd.png)
+
+Feel free to experiment with different maps and compare the performance of the different algorithms in terms of path length and computation time.
+
+
 ## Conclusion
 
 This project provides a practical implementation of four common pathfinding algorithms for robot navigation on discrete maps. By running the code and modifying the map, you can observe the behavior and performance of each algorithm.
