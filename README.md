@@ -55,7 +55,6 @@ Terminal Output:
 
 Feel free to experiment with different maps and compare the performance of the different algorithms in terms of path length and computation time.
 
-
 ## Conclusion
 
 This project provides a practical implementation of four common pathfinding algorithms for robot navigation on discrete maps. By running the code and modifying the map, you can observe the behavior and performance of each algorithm.
