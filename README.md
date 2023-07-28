@@ -50,10 +50,11 @@ Below are the results for each algorithm:
 
 ![A* Plot](results/A_star.png)
 
-Terminal Output:
-![Terminal Output](results/cmd.png)
+### Terminal Output:
 
-Feel free to experiment with different maps and compare the performance of the different algorithms in terms of path length and computation time.
+![Terminal Output](results/terminal.PNG)
+
+
 
 ## Conclusion
 
