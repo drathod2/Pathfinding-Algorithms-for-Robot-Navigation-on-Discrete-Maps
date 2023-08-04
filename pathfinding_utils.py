@@ -7,16 +7,7 @@ from numpy import inf
 import math
 
 
-def load_map(file_path):
-    """
-    Load map from CSV file.
-
-    Args:
-        file_path (str): Path to CSV file.
-
-    Returns:
-        tuple: Grid, start point, and goal point.
-    """                             
+def load_map(file_path):                           
     with open(file_path, 'r') as map_file:
         reader = csv.reader(map_file)                        # Create a CSV reader object to read the file
         rows = list(reader)                                  # Convert the reader object to a list of rows
@@ -59,6 +50,8 @@ def visualize_path(grid, path, title, start, goal):
     plt.ylim(row, 0)  # Set the y-axis limits (inverted to start from the top)
 
 def setup(grid, start, goal):
+    epsi = 3
+    distance = 0
     path = []                                         # Initialize an empty path
     stack = []                                        # Initialize an empty stack
     steps = 0                                         # Initialize step count to 0
@@ -83,8 +76,11 @@ def setup(grid, start, goal):
     steps = steps + 1                                                # Increment steps by 1 since the start node is visited
 
     parent = [[0 for i in range(Col)] for j in range(Row)]              # Create an array to store the parent node of the current visited node
+    
+    queue=[]
+    queue.append([0,start[0],start[1]])
 
-    return path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack   
+    return path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue  
 
 def backtrack(goal, parent, path):
     count = 0

@@ -4,7 +4,7 @@ from numpy import inf
 def bfs(grid, start, goal):
 
 # Initialize variables and data structures
-    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack = setup(grid, start, goal)
+    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue = setup(grid, start, goal)
 
     while len(rq) > 0:                                  
         # Terminate the loop if the start and goal are the same
@@ -55,7 +55,7 @@ def bfs(grid, start, goal):
 
 def dfs(grid, start, goal):
     # Initialize variables and data structures
-    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack = setup(grid, start, goal)
+    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue = setup(grid, start, goal)
 
     while len(stack) > 0:
         if found:
@@ -95,7 +95,7 @@ def dfs(grid, start, goal):
 def dijkstra(grid, start, goal):
     
     # Calling the 'setup' function from 'pathfind' module and assigning the returned values to variables
-    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack = setup(grid, start, goal)
+    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue = setup(grid, start, goal)
     
     # Creating a 2D list 'cost' initialized with 'inf' for all elements
     cost = [[inf for i in range(Col)] for j in range(Row)]                
@@ -158,17 +158,13 @@ def dijkstra(grid, start, goal):
 
 def astar(grid, start, goal):
     # Calling the 'setup' function from 'pathfind' module and assigning the returned values to variables
-    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack = setup(grid, start, goal)
+    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue = setup(grid, start, goal)
     
     # Creating a 2D list 'cost' initialized with 'inf' for all elements
     cost = [[inf for i in range(Col)] for j in range(Row)]
     
     # Setting the heuristic cost of the start node based on the Manhattan distance to the goal
     cost[start[0]][start[1]] = (abs(start[0] - goal[0]) + abs(start[1] - goal[1]))
-    
-    queue = []                                                            # Creating an empty queue list
-    queue.append([0, start[0], start[1]])                                 # Adding the starting node with a cost of 0 to the queue
-    distance = 0  
 
     while len(queue) > 0:                                                # Continue the loop until the queue is empty
 
@@ -229,3 +225,59 @@ def astar(grid, start, goal):
         print("No path found.")
 
     return path                                                       # Return the shortest path
+
+def wastar(grid, start, goal):
+    path, steps, found, Row, Col, visited, parent, rq, cq, grid, stack, epsi, distance, queue = setup(grid, start, goal)
+    
+    cost = [[inf for i in range(Col)] for j in range(Row)]
+    
+    cost[start[0]][start[1]] = (abs(start[0] - goal[0]) + abs(start[1] - goal[1]))
+    
+    while (len(queue))>0:
+
+        if found==True:
+            break
+
+        temp=queue.pop(0)
+        r=temp[1]
+        c=temp[2]
+        dr=[0,+1,0,-1]
+        dc=[+1,0,-1,0]
+        steps=steps+1
+        for i in range(4):
+            rr = r + dr[i]
+            cc = c + dc[i]
+            if rr<0 or cc<0:
+                continue
+            if rr>=Row or cc>=Col:
+                continue
+            if visited[rr][cc]==True:
+                if cost[rr][cc]>path_cost([rr,cc],start,parent) + epsi*(abs(rr-goal[0])+abs(cc-goal[1])):
+                    cost[rr][cc]=path_cost([rr,cc],start,parent) + epsi*(abs(rr-goal[0])+abs(cc-goal[1]))
+                    parent[rr][cc]=[r,c]
+                continue
+            if grid[rr][cc]==1:
+                continue
+            parent[rr][cc] = [r,c]
+            distance=path_cost([rr,cc],start,parent)                  # cost to node g(x)
+            heuristic=abs(rr-goal[0])+abs(cc-goal[1])           # h(x) as manhattan distance of node from goal 
+            cost[rr][cc]=distance+epsi*heuristic                # calculate total cost using weighted heuristic
+            queue.append([cost[rr][cc], rr,cc])
+            visited[rr][cc]=True
+            
+            
+            if grid[rr][cc]== "G":
+                found=True
+                break
+        
+        queue.sort()                                                    # sort queue based on total cost 
+
+    path, count = backtrack(goal, parent, path)
+
+    if found:
+        print("Using Weighted A*")
+        print("Steps taken to find the path:", steps)
+        print("Shortest path:", count, "\n")
+    else:
+        print("No path found.")
+    return path
