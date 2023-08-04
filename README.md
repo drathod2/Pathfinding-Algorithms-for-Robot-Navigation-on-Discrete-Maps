@@ -57,10 +57,6 @@ Below are the results for each algorithm:
 
 ### Terminal Output:
 
-![Terminal Output](results/terminal.PNG)
-
-
-
 ## Conclusion
 
 This project provides a practical implementation of five common pathfinding algorithms for robot navigation on discrete maps. By running the code and modifying the map, you can observe the behavior and performance of each algorithm.
