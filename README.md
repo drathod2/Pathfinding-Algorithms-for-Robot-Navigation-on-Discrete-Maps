@@ -1,17 +1,18 @@
 # Pathfinding-Algorithms-for-Robot-Navigation-on-Discrete-Maps
 
-This project provides an implementation of four pathfinding algorithms for robot navigation on discrete maps. The algorithms included are:
+This project implements five pathfinding algorithms for robot navigation on discrete maps. The algorithms included are:
 
 1. Breadth-First Search (BFS)
 2. Depth-First Search (DFS)
 3. Dijkstra's Algorithm
 4. A* Algorithm
+5. Weighted A* Algorithm
 
 ## Files Included
 
 - `main.py`: This script is the entry point of the program. It calls the load map function, all the search functions, and the visualize path function.
-- `pathfinding.py`: This script contains the implementation of the four pathfinding algorithms.
-- `pathfinding_utils.py`: This script provides the necessary utility functions required for the pathfinding algorithms.
+- `pathfinding.py`: This script contains the implementation of the five pathfinding algorithms.
+- `pathfinding_utils.py`: This script provides the utility functions required for the pathfinding algorithms.
 - `map.csv`: This CSV file represents the map used for testing the algorithms. You can modify this file to create your own map by using 1 for obstacles and 0 for free space.
 
 ## Instructions to Run the Code
@@ -24,7 +25,7 @@ To run the code and test the pathfinding algorithms, follow these steps:
 
 ## Usage
 
-After running the code, you will see the map displayed with the start and goal positions marked. The algorithm will then compute the path using each of the four algorithms and display the results.
+After running the code, you will see the map with the start and goal positions marked. The algorithm will then compute the path using each of the five algorithms and display the results.
 
 The output will show the number of steps it took to find the path, the final path, and the length of the shortest path for each algorithm. The visualized path will be marked on the map as well.
 
@@ -50,6 +51,10 @@ Below are the results for each algorithm:
 
 ![A* Plot](results/A_star.png)
 
+### WA* Algorithm
+
+![WA* Plot](results/WA_star.png)
+
 ### Terminal Output:
 
 ![Terminal Output](results/terminal.PNG)
@@ -58,4 +63,4 @@ Below are the results for each algorithm:
 
 ## Conclusion
 
-This project provides a practical implementation of four common pathfinding algorithms for robot navigation on discrete maps. By running the code and modifying the map, you can observe the behavior and performance of each algorithm.
+This project provides a practical implementation of five common pathfinding algorithms for robot navigation on discrete maps. By running the code and modifying the map, you can observe the behavior and performance of each algorithm.
